@@ -5,7 +5,7 @@ import './Product.css';
 //   return (
 //     <div className="product">
 //       <div className="product__info">
-//         <p>{title}</p>
+//         <p className="product__title">{title}</p>
 //         <p className="product__price">
 //           <strong>${price}</strong>
 //         </p>
@@ -13,19 +13,24 @@ import './Product.css';
 //           {Array(rating)
 //             .fill()
 //             .map((_, i) => (
-//               <p key={i}>⭐</p>
+//               <span key={i}>⭐</span>
 //             ))}
 //         </div>
 //       </div>
-//       <img src={image} alt={title} />
+//       <div className="product__imageContainer">
+//         <img src={image} alt={title} className="product__image" />
+//       </div>
 //       <button>Add to Basket</button>
 //     </div>
 //   );
 // }
 
-function Product({ id, title, image, price, rating }) {
+// export default Product;
+
+function Product({ id, title, image, price, rating, className }) {
+  // Append the className prop to the product's class list
   return (
-    <div className="product">
+    <div className={`product ${className}`}>
       <div className="product__info">
         <p className="product__title">{title}</p>
         <p className="product__price">

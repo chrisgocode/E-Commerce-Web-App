@@ -1,13 +1,13 @@
 import React from 'react';
 import Product from '../Product/Product';
-import './ProductList.css';
+import './ProductGrid.css';
 import ipadImage from '../../../assets/images/ipad-pro.png'; 
 import ps5Image from '../../../assets/images/PS5.png';
 import appleWatchImage from '../../../assets/images/appleWatch.png';
 import stanleyCupImage from '../../../assets/images/stanley.png';
 import airpodsProImage from '../../../assets/images/airpods.png';
 
-function ProductList() {
+function ProductGrid() {
   const products = [
     {
       id: 'ipad',
@@ -48,19 +48,23 @@ function ProductList() {
   ];
 
   return (
-    <div className="productList">
-      {products.map(product => (
-        <Product
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          image={product.image}
-          price={product.price}
-          rating={product.rating}
-        />
-      ))}
+    <div className="product-grid">
+      {products.map((product, index) => {
+        // Determine if the product is 'large' or 'small' based on its position
+        const sizeClass = index < 2 ? 'large' : 'small';
+        return (
+          <Product
+            key={product.id}
+            className={sizeClass}
+            title={product.title}
+            image={product.image}
+            price={product.price}
+            rating={product.rating}
+          />
+        );
+      })}
     </div>
   );
 }
 
-export default ProductList;
+export default ProductGrid;

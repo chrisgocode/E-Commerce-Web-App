@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
 import background from '../../../assets/images/amazon-background-edited.jpg';
-import ProductList from '../../layout/ProductList/ProductList';
+import ProductList from '../../layout/ProductGrid/ProductGrid';
 
 const Home = () => {
   return (

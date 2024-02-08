@@ -5,7 +5,6 @@
   justify-content: space-between; /* Distributes space between child elements */
   width: 100%;
   padding: 20px;
-  margin-top: -300px;
   background-color: white;
   z-index: 1;
   border: 2px solid lightgray;
@@ -28,6 +27,7 @@
   display: flex;
   align-items: center; /* This will vertically center the image */
   justify-content: center; /* This will horizontally center the image */
+  margin-bottom: 10px;
 }
 
 .product__image {

@@ -2,3 +2,9 @@
     margin: 0;
     padding: 0;
     }
+
+.app {
+    background-color: #EBEDED; /* Or any shade of gray you prefer */
+    min-height: 100vh; /* Ensures it covers the full viewport height */
+    /* Other styles as needed */
+}
