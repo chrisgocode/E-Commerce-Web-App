@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import logo from '../../../assets/images/Amazon_logo.svg';
+import logo from '../../../assets/Amazon_logo.svg';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
