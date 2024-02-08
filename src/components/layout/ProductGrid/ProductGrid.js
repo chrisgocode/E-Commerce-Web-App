@@ -35,14 +35,14 @@ function ProductGrid() {
       title: 'Stanley Quencher H2.0 FlowState Stainless Steel Vacuum Insulated Tumbler with Lid and Straw for Water, Iced Tea or Coffee',
       image: stanleyCupImage,
       price: 45.00,
-      rating: 4
+      rating: 4.8
     },
     {
       id: 'airpods-pro',
       title: 'Apple AirPods Pro (2nd Generation) Wireless Ear Buds with USB-C Charging',
       image: airpodsProImage,
       price: 189.99,
-      rating: 4
+      rating: 4.4
     }
 
   ];

@@ -1,19 +1,46 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'; 
 import Home from './components/pages/Home/Home'
 import Header from './components/layout/Header/Header';
+import Login from './components/pages/Login/Login';
 import './App.css';
 
+/*
+function App() {
+
+  return (
+    <Router>
+      <div className="app">
+      <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+*/
+
+function AppWithHeader() {
+  let location = useLocation();
+
+  return (
+    <div className="app">
+      {location.pathname !== '/login' && <Header />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        {/* Add more routes for other pages here */}
+      </Routes>
+    </div>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <div className="app">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* Add more routes for other pages here */}
-        </Routes>
-      </div>
+      <AppWithHeader />
     </Router>
   );
 }

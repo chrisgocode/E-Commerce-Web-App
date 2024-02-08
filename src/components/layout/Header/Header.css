@@ -64,6 +64,9 @@
   margin-right: 10px;
   cursor: pointer;
   font-size: 14px;
+  text-decoration: none;
+  color: white;
+
 }
 
 .header__optionLineOne {
@@ -73,6 +76,7 @@
 .header__optionLineTwo {
   font-weight: 800;
 }
+
 
 .header__optionBasket {
   display: flex;

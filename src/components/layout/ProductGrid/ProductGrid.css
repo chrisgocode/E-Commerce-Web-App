@@ -1,42 +1,43 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* This sets up a 6-column grid */
-  gap: 3.5rem; /* This is the space between grid items */
-  padding: 2rem; /* Adds padding inside the grid, around the items */
-  margin: 1vh; /* Vertically moves the grid up and centers it horizontally */
-  max-width: calc(100% - 4rem); /* Ensures the grid doesn't touch the edges of the screen */
-  box-sizing: border-box; /* Includes padding in the width calculation */
-  position: relative; /* Keep relative for z-index stacking context */
-  z-index: 1; /* Keeps the product grid above the background image */
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3.5rem;
+  padding: 2rem;
+  margin: 1vh;
+  max-width: calc(100% - 4rem);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
   margin-top: -20em;
 }
 
+
 .product.large {
-  grid-column: span 3; /* Large products span 3 of 6 columns */
+  grid-column: span 3; 
 }
 
 .product.small {
-  grid-column: span 2; /* Small products span 2 of 6 columns */
+  grid-column: span 2; 
 }
 
 @media (max-width: 1200px) {
   .product-grid {
-    grid-template-columns: repeat(3, 1fr); /* Adjust for medium screens */
+    grid-template-columns: repeat(3, 1fr); 
   }
   .product.large {
-    grid-column: span 3; /* Large products span all columns */
+    grid-column: span 3; 
   }
   .product.small {
-    grid-column: span 1; /* Small products span one column */
+    grid-column: span 1; 
   }
 }
 
 @media (max-width: 768px) {
   .product-grid {
-    grid-template-columns: 1fr; /* One column on small screens */
-    margin-top: 0; /* Reset the top margin for small screens */
+    grid-template-columns: 1fr; 
+    margin-top: 0; 
   }
   .product.large, .product.small {
-    grid-column: 1 / -1; /* All products span the full width */
+    grid-column: 1 / -1; 
   }
 }
