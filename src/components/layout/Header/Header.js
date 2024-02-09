@@ -79,7 +79,9 @@ function Header() {
           <span className="header__optionLineTwo">& Orders</span>
         </div>
         <div className="header__optionBasket">
-          <ShoppingCartIcon />
+          <Link to="/checkout">
+            <ShoppingCartIcon />
+          </Link>
           <span className="header__basketCount">{basket?.length}</span>
         </div>
       </div>

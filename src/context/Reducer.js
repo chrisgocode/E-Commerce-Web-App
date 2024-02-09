@@ -68,4 +68,4 @@ export const GlobalProvider = ({ children }) => {
 };
 
 // Export the reducer and ACTIONS for use in components
-export { initialState, reducer, ACTIONS };
+export { initialState, reducer, ACTIONS, getBasketTotal };

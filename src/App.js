@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Home from './components/pages/Home/Home'
 import Header from './components/layout/Header/Header';
 import Login from './components/pages/Login/Login';
+import Checkout from './components/pages/Checkout/Checkout';
 import './App.css';
 
 /*
@@ -31,6 +32,7 @@ function AppWithHeader() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/checkout" element={<Checkout />} />
         {/* Add more routes for other pages here */}
       </Routes>
     </div>
