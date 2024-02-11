@@ -37,6 +37,7 @@ function Product({ id, title, image, price, rating, className }) {
   const numericRating = parseFloat(rating);
   const [{ basket }, dispatch] = useStateValue();
   const addToBasket = () => {
+    console.log('Adding to basket:', id, title, image, price, rating);
     dispatch({
       type: 'ADD_TO_BASKET',
       item: {

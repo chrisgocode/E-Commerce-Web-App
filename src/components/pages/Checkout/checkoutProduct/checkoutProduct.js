@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './checkoutProduct.css';
 import Rating from '@mui/material/Rating';
 import { useStateValue } from '../../../../context/StateProvider'; 
@@ -6,10 +6,17 @@ import { useStateValue } from '../../../../context/StateProvider';
 function CheckoutProduct({ id, title, image, price, rating }) {
     const numericRating = parseFloat(rating);
     const [{ basket }, dispatch] = useStateValue();
-    const [quantity, setQuantity] = useState(1);  // Assuming the default quantity is 1
+    // Find the item in the basket and get its quantity
+    const item = basket.find(item => item.id === id);
+    const [quantity, setQuantity] = useState(item ? item.quantity : 1);  
+
+    useEffect(() => {
+        // Update the quantity state if the basket changes
+        setQuantity(item ? item.quantity : 1);
+    }, [basket, id]);
 
     const handleQuantityChange = (event) => {
-        const newQuantity = parseInt(event.target.value);
+        const newQuantity = Number(event.target.value);
         setQuantity(newQuantity);
     
         // Dispatch action to update the quantity in the global state
@@ -48,13 +55,15 @@ function CheckoutProduct({ id, title, image, price, rating }) {
                 </div>
                 <div className="checkoutProduct__quantity">
                     <select value={quantity} onChange={handleQuantityChange}>
-                        {Array.from({ length: 11 }, (_, i) => (
-                            <option key={i} value={i}>
-                                {i === 0 ? '0 (Delete)' : i}
+                        {[...Array(10).keys()].map(i => (
+                            <option key={i + 1} value={i + 1}>
+                                {i + 1}
                             </option>
                         ))}
                     </select>
-                    <button onClick={removeFromBasket}>Delete</button>
+                    <button onClick={() => dispatch({ type: 'REMOVE_FROM_BASKET', id: id })}>
+                        Delete
+                    </button>                
                 </div>
             </div>
         </div>

@@ -55,6 +55,7 @@ function ProductGrid() {
         return (
           <Product
             key={product.id}
+            id={product.id}
             className={sizeClass}
             title={product.title}
             image={product.image}

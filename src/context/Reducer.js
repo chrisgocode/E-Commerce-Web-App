@@ -53,25 +53,11 @@ const reducer = (state, action) => {
         basket: updatedBasket,
       };
       case ACTIONS.REMOVE_FROM_BASKET:
-        const indexToRemove = state.basket.findIndex(
-          (basketItem) => basketItem.id === action.id
-        );
-        let newBasketState = [...state.basket];
-      
-        if (indexToRemove >= 0) {
-          const itemToRemove = newBasketState[indexToRemove];
-          if (itemToRemove.quantity > 1) {
-            // Decrement the quantity
-            const updatedItem = { ...itemToRemove, quantity: itemToRemove.quantity - 1 };
-            newBasketState[indexToRemove] = updatedItem;
-          } else {
-            // Remove the item if quantity is 1
-            newBasketState.splice(indexToRemove, 1);
-          }
-        }
+        // Filter out the item with the given id
+        const newBasketAfterRemoval = state.basket.filter(item => item.id !== action.id);
         return {
           ...state,
-          basket: newBasketState,
+          basket: newBasketAfterRemoval,
         };
 
         case ACTIONS.UPDATE_QUANTITY:

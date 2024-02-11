@@ -41,11 +41,34 @@
   .checkoutProduct button {
     background: #f0c14b;
     border: 1px solid;
-    margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
     padding: 5px 20px;
     border-radius: 2px;
     cursor: pointer;
   }
+
+  .checkoutProduct__quantity select {
+    -webkit-appearance: none; /* Removes default styling of the select box for Webkit browsers */
+    -moz-appearance: none; /* Removes default styling of the select box for Firefox */
+    appearance: none; /* Removes default styling of the select box */
+    padding: 5px 8px;
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: white; /* White background */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* SVG for the dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 5px top 50%; /* Position the arrow to the right */
+    background-size: 12px; /* Size of the arrow */
+    margin-right: 10px; /* Space between the dropdown and the delete button */
+    cursor: pointer;
+  }
   
+  .checkoutProduct__quantity {
+    display: flex;
+    align-items: center;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
