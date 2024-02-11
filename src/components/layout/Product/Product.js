@@ -45,6 +45,7 @@ function Product({ id, title, image, price, rating, className }) {
         image: image,
         price: price,
         rating: rating,
+        quantity: 1,
       },
     });
   };

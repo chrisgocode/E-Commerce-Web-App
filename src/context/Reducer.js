@@ -6,14 +6,20 @@ const initialState = {
   user: null, // to contain details of the logged in user
 };
 
+// Helper function calculate total items in basket
+const getTotalItems = (basket) => 
+  basket.reduce((total, currentItem) => total + currentItem.quantity, 0);
+
+
 // Helper function to calculate the total amount in the basket
 const getBasketTotal = (basket) =>
-  basket?.reduce((amount, item) => item.price + amount, 0);
+  basket?.reduce((amount, item) => item.price * item.quantity + amount, 0);
 
 // Actions
 const ACTIONS = {
   ADD_TO_BASKET: 'ADD_TO_BASKET',
   REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET',
+  UPDATE_QUANTITY: 'UPDATE_QUANTITY',
   SET_USER: 'SET_USER',
   // Define other actions as needed
 };
@@ -25,24 +31,66 @@ export const GlobalContext = createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_TO_BASKET:
-      // Logic to add item to basket
-      return {
-        ...state,
-        basket: [...state.basket, action.item],
-      };
-    case ACTIONS.REMOVE_FROM_BASKET:
-      // Logic to remove item from basket
-      const index = state.basket.findIndex(
-        (basketItem) => basketItem.id === action.id
+      // Check if the item is already in the basket
+      const existingIndex = state.basket.findIndex(
+        (basketItem) => basketItem.id === action.item.id
       );
-      let newBasket = [...state.basket];
-      if (index >= 0) {
-        newBasket.splice(index, 1);
+
+      let updatedBasket = [...state.basket];
+
+      if (existingIndex >= 0) {
+        // Item exists, update its quantity
+        const existingItem = updatedBasket[existingIndex];
+        const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+        updatedBasket[existingIndex] = updatedItem;
+      } else {
+        // Item not in basket, add it with a quantity of 1
+        const newItem = { ...action.item, quantity: 1 };
+        updatedBasket = [...state.basket, newItem];
       }
       return {
         ...state,
-        basket: newBasket,
+        basket: updatedBasket,
       };
+      case ACTIONS.REMOVE_FROM_BASKET:
+        const indexToRemove = state.basket.findIndex(
+          (basketItem) => basketItem.id === action.id
+        );
+        let newBasketState = [...state.basket];
+      
+        if (indexToRemove >= 0) {
+          const itemToRemove = newBasketState[indexToRemove];
+          if (itemToRemove.quantity > 1) {
+            // Decrement the quantity
+            const updatedItem = { ...itemToRemove, quantity: itemToRemove.quantity - 1 };
+            newBasketState[indexToRemove] = updatedItem;
+          } else {
+            // Remove the item if quantity is 1
+            newBasketState.splice(indexToRemove, 1);
+          }
+        }
+        return {
+          ...state,
+          basket: newBasketState,
+        };
+
+        case ACTIONS.UPDATE_QUANTITY:
+          const indexToUpdate = state.basket.findIndex(
+            (basketItem) => basketItem.id === action.id
+          );
+          if (indexToUpdate >= 0) {
+            const newBasket = [...state.basket];
+            newBasket[indexToUpdate] = {
+              ...newBasket[indexToUpdate],
+              quantity: action.quantity,
+            };
+            return {
+              ...state,
+              basket: newBasket,
+            };
+          }
+          return state;
+
     case ACTIONS.SET_USER:
       // Logic to set the user
       return {
@@ -68,4 +116,4 @@ export const GlobalProvider = ({ children }) => {
 };
 
 // Export the reducer and ACTIONS for use in components
-export { initialState, reducer, ACTIONS, getBasketTotal };
+export { initialState, reducer, ACTIONS, getBasketTotal, getTotalItems };

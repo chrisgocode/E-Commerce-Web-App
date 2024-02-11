@@ -7,14 +7,12 @@ import { useStateValue } from '../../../context/StateProvider';
 import { Link,useNavigate } from 'react-router-dom';
 import { auth } from '../../../Firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { getTotalItems } from '../../../context/Reducer';
 
 function Header() {
   const navigate = useNavigate();
   const [{ basket, user }, dispatch] = useStateValue();
 
-  const goLogin = () => {
-    navigate('/login');
-  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
@@ -82,7 +80,7 @@ function Header() {
           <Link to="/checkout">
             <ShoppingCartIcon />
           </Link>
-          <span className="header__basketCount">{basket?.length}</span>
+          <span className="header__basketCount">{getTotalItems(basket)}</span>
         </div>
       </div>
     </div>
