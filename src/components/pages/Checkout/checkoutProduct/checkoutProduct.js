@@ -3,7 +3,7 @@ import './checkoutProduct.css';
 import Rating from '@mui/material/Rating';
 import { useStateValue } from '../../../../context/StateProvider'; 
 
-function CheckoutProduct({ id, title, image, price, rating }) {
+function CheckoutProduct({ key,id, title, image, price, rating }) {
     const numericRating = parseFloat(rating);
     const [{ basket }, dispatch] = useStateValue();
     // Find the item in the basket and get its quantity
