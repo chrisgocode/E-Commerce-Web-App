@@ -3,7 +3,8 @@ import { createContext, useReducer, useContext } from 'react';
 // Define the initial state of the application
 const initialState = {
   basket: [], // to contain shopping basket details
-  user: null, // to contain details of the logged in user
+  user: null,
+  userName: '' ,
 };
 
 // Helper function calculate total items in basket
@@ -82,6 +83,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+        userName: action.userName,
       };
     default:
       return state;

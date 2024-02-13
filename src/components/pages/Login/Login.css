@@ -43,12 +43,16 @@
     padding: 5px;
   }
 
-  .login__signInButton {
+  .login__signInButton,
+  .login__continueButton {
     background: #f0c14b;
   }
   
   .login__signInButton,
-  .login__registerButton {
+  .login__registerButton,
+  .login__forgotPasswordButton,
+  .login__continueButton,
+  .login__signInLink{
     border-radius: 2px;
     width: 100%;
     height: 30px;
@@ -59,10 +63,32 @@
   }
   
   .login__signInButton:hover,
-  .login__registerButton:hover {
+  .login__registerButton:hover,
+  .login__forgotPasswordButton:hover,
+  .login__continueButton:hover,
+  .login__signInLink:hover{
     opacity: 0.9;
   }
   
   .login__container p {
     padding: 10px;
+  }
+
+  .login__actions {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 10px; 
+  }
+  
+  .login__forgotPasswordButton,
+  .login__registerButton {
+    flex: 1; 
+    margin: 0 5px; 
+  }
+
+  .login__error {
+    color: red;
+    font-size: 12px; /* Adjust size as needed */
+    margin-top: -10px; /* Adjust spacing as needed */
+    margin-bottom: 10px; /* Adjust spacing as needed */
   }

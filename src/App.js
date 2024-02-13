@@ -4,36 +4,21 @@ import Home from './components/pages/Home/Home'
 import Header from './components/layout/Header/Header';
 import Login from './components/pages/Login/Login';
 import Checkout from './components/pages/Checkout/Checkout';
+import ForgotPassword from './components/pages/Login/forgotPassword/forgotPassword';
 import './App.css';
-
-/*
-function App() {
-
-  return (
-    <Router>
-      <div className="app">
-      <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-*/
 
 function AppWithHeader() {
   let location = useLocation();
+  const showHeader = location.pathname !== '/login' && location.pathname !== '/forgot-password';
 
   return (
     <div className="app">
-      {location.pathname !== '/login' && <Header />}
+      {showHeader && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
-        {/* Add more routes for other pages here */}
       </Routes>
     </div>
   );

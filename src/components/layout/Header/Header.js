@@ -11,20 +11,23 @@ import { getTotalItems } from '../../../context/Reducer';
 
 function Header() {
   const navigate = useNavigate();
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user, userName }, dispatch] = useStateValue();
 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
+        const displayName = authUser.displayName || "Guest";
         dispatch({
           type: 'SET_USER',
           user: authUser,
+          userName: displayName,
         });
       } else {
         dispatch({
           type: 'SET_USER',
           user: null,
+          userName: '',
         });
       }
     });
@@ -63,7 +66,7 @@ function Header() {
       <div className="header__nav">
         {user ? (
           <div className="header__option" onClick={handleSignOut}>
-            <span className="header__optionLineOne">Hello, {user.email}</span>
+            <span className="header__optionLineOne">Hello, {userName}</span>
             <span className="header__optionLineTwo">Sign Out</span>
           </div>
         ) : (
