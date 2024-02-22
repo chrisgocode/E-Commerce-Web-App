@@ -15,7 +15,7 @@ const firebaseConfig = {
   storageBucket: "clone-f33b1.appspot.com",
   messagingSenderId: "380251015248",
   appId: "1:380251015248:web:e5122a45ac4a0c33ee6955",
-  measurementId: "G-N6XFR1LE72"
+  measurementId: "G-N6XFR1LE72",
 };
 
 // Initialize Firebase

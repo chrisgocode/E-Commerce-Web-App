@@ -1,33 +1,32 @@
-import React, { useEffect } from 'react';
-import './Header.css';
-import logo from '../../../assets/Amazon_logo.svg';
-import SearchIcon from '@mui/icons-material/Search';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useStateValue } from '../../../context/StateProvider';
-import { Link,useNavigate } from 'react-router-dom';
-import { auth } from '../../../Firebase';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { getTotalItems } from '../../../context/Reducer';
+import React, { useEffect, useState } from "react";
+import "./Header.css";
+import logo from "../../../assets/Amazon_logo.svg";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useStateValue } from "../../../context/StateProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../../Firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { getTotalItems } from "../../../context/Reducer";
 
 function Header() {
   const navigate = useNavigate();
   const [{ basket, user, userName }, dispatch] = useStateValue();
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
         const displayName = authUser.displayName || "Guest";
         dispatch({
-          type: 'SET_USER',
+          type: "SET_USER",
           user: authUser,
           userName: displayName,
         });
       } else {
         dispatch({
-          type: 'SET_USER',
+          type: "SET_USER",
           user: null,
-          userName: '',
+          userName: "",
         });
       }
     });
@@ -36,20 +35,22 @@ function Header() {
   }, [dispatch]);
 
   const handleSignOut = () => {
-    signOut(auth).then(() => {
-      dispatch({
-        type: 'SET_USER',
-        user: null,
+    signOut(auth)
+      .then(() => {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Sign out error", error);
       });
-      navigate('/');
-    }).catch((error) => {
-      console.error('Sign out error', error);
-    });
   };
 
   return (
     <div className="header">
-      <Link to='/'>
+      <Link to="/">
         <img src={logo} alt="Amazon logo" className="header__logo" />
       </Link>
 
@@ -74,7 +75,7 @@ function Header() {
             <span className="header__optionLineOne">Hello, Guest</span>
             <span className="header__optionLineTwo">Accounts & Lists</span>
           </Link>
-        )} 
+        )}
         <div className="header__option">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>

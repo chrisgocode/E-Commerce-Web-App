@@ -1,15 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'; 
-import Home from './components/pages/Home/Home'
-import Header from './components/layout/Header/Header';
-import Login from './components/pages/Login/Login';
-import Checkout from './components/pages/Checkout/Checkout';
-import ForgotPassword from './components/pages/Login/forgotPassword/forgotPassword';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import Home from "./components/pages/Home/Home";
+import Header from "./components/layout/Header/Header";
+import Login from "./components/pages/Login/Login";
+import Checkout from "./components/pages/Checkout/Checkout";
+import ForgotPassword from "./components/pages/Login/forgotPassword/forgotPassword";
+import "./App.css";
 
 function AppWithHeader() {
   let location = useLocation();
-  const showHeader = location.pathname !== '/login' && location.pathname !== '/forgot-password';
+  const showHeader =
+    location.pathname !== "/login" && location.pathname !== "/forgot-password";
 
   return (
     <div className="app">

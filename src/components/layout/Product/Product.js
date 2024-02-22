@@ -1,7 +1,7 @@
-import React from 'react';
-import './Product.css';
-import Rating from '@mui/material/Rating';
-import { useStateValue } from '../../../context/StateProvider';
+import React from "react";
+import "./Product.css";
+import Rating from "@mui/material/Rating";
+import { useStateValue } from "../../../context/StateProvider";
 
 /*
 function Product({ id, title, image, price, rating, className }) {
@@ -38,7 +38,7 @@ function Product({ id, title, image, price, rating, className }) {
   const [{ basket }, dispatch] = useStateValue();
   const addToBasket = () => {
     dispatch({
-      type: 'ADD_TO_BASKET',
+      type: "ADD_TO_BASKET",
       item: {
         id: id,
         title: title,
@@ -49,7 +49,7 @@ function Product({ id, title, image, price, rating, className }) {
       },
     });
   };
-  
+
   return (
     <div className={`product ${className}`}>
       <div className="product__info">
@@ -58,7 +58,12 @@ function Product({ id, title, image, price, rating, className }) {
           <strong>${price}</strong>
         </p>
         <div className="product__rating">
-          <Rating name="read-only" value={numericRating} precision={0.1} readOnly />
+          <Rating
+            name="read-only"
+            value={numericRating}
+            precision={0.1}
+            readOnly
+          />
         </div>
       </div>
       <div className="product__imageContainer">
